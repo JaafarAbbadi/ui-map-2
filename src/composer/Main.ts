@@ -2,6 +2,7 @@ import {User} from '../models/User'
 import {getPropertyTypes} from './utils'
 import {faker} from '@faker-js/faker';
 import { Observable } from 'rxjs';
+import { singleCreate } from './functions/genericAPIs';
 
 let randomName = faker.name.findName(); // Rowan Nikolaus
 let randomEmail = faker.internet.email();
@@ -39,17 +40,9 @@ interface Component<T> {
     props: {[i: string]: any};
     actions: {[i: string]: Action<T>}
     selector: Observable<T>;
-
-    
-
 }
 
 export const Main = ():void => {
-    const user: User = new User(randomName, randomEmail);
-    console.log(user);
-    const models = {
-        "User": getPropertyTypes(user),
-    }
-    console.log({models});
-    // 
+    const user: User = {displayName: randomName, email: randomEmail};
+
 }
