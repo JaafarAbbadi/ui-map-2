@@ -19,12 +19,9 @@ export const Counter  = () => {
     counterEntity.create({title: faker.name.jobArea(), count: Math.ceil(Math.random()*10)}).then(res => console.log(res));
     useEffect(() => {counterEntity.query(10,1).then(res => setCounters(res));}, [])
     
-    
-    
     return List({
         data: counters,
-        renderItem: ((item) => <div>{`${item.title} : ${item.count}`}</div>),
-        keyExtractor: (c) => c.objectId
+        renderItem: ((item) => <div>{`${item.title} : ${item.count}`}</div>)
     });
 
 }

@@ -8,6 +8,8 @@ import OutlinedCard from './composer/OutlinedCard';
 import {Main} from './composer/Main';
 import { getDesignTokens } from './Theme/theme';
 import { Counter } from './composer/components/Counter';
+import { Application } from './composer/components/Application';
+import { Header } from './composer/components/Header';
 
 function App() {
   Main();
@@ -27,7 +29,7 @@ function App() {
   return (
     <React.StrictMode>
       <ThemeProvider theme={theme}>
-        <Counter/>
+        <Main/>
       </ThemeProvider>
     </React.StrictMode>
   );
