@@ -17,7 +17,10 @@ export const Counter  = () => {
     // remote props
     const counterEntity = UseEntityState<Counter>('counters');
     counterEntity.create({title: faker.name.jobArea(), count: Math.ceil(Math.random()*10)}).then(res => console.log(res));
-    useEffect(() => {counterEntity.query(10,1).then(res => setCounters(res));}, [])
+    useEffect(() => {
+        counterEntity.query(10,1).then(res => setCounters(res));
+    }, []
+    )
     
     return List({
         data: counters,

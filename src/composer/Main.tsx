@@ -1,13 +1,31 @@
-import { Application } from './components/Application';
+
 import { Header } from './components/Header';
-import { Menu, Person, StayPrimaryLandscape } from '@mui/icons-material';
+import { Person } from '@mui/icons-material';
 import { Button } from './components/ButtonGroup';
 import { Basic } from './components/Basic';
-import { Theme, Toolbar, Typography } from '@mui/material';
-import { ThemeContext } from '@emotion/react';
+import { Toolbar } from '@mui/material';
 import { TextInput } from './components/TextInput';
 
 
+/**
+ * 
+ * 
+ * 
+ * Categorization
+ * 
+ * Types of components: (CRUD), (Local, Remote), (Single, Multi);
+ * Create  Single   => usually a form 
+ * Create  Multi    => usually a form with a counter
+ * 
+ * Read  Single     => usually a read only form
+ * Read  Multi      => usually a list
+ * 
+ * Update Single    => usually prefilled form
+ * Update Multi     => usually an entity checkbox selection & selected properties form 
+ * 
+ * Delete Single    => usually a delete button and an are you sure popup
+ * Delete Multi     => usually an entity checkbox selection & a delete button 
+ */
 
 // TODO: init a secure role based Parse server & dashboard & use it to Implement Generic Actions, Effects, Reducers & selectors 
 // TODO: Decide with the guys if we should use firebase instead since its faster to implement #IGNORED
@@ -49,20 +67,9 @@ const row = {
 const title = () => <h1>Hello world</h1>;
 const profileButton = () => Button({variant: 'contained',  child: () => <Person/>});
 const menuButton = () => Button({variant: 'contained', 'child': () => 'hello world'});
-
+const textInput = () => TextInput({'title': 'yo', onChange: (val) => {console.log(val)}});
 
 export function Main(...properties: any[]) {
-    const header = Basic<any>({
-        'container': Toolbar,
-        'containerSx': {...row.container, backgroundColor: 'primary.dark', }, 
-        'element': 'div',
-        'elementsSx': {...row.item},
-        'data': [
-            ...[menuButton,title, profileButton].map(f => f()),
-            TextInput({'title': 'yo', onChange: (val) => {console.log(val)}})
-        ],
-        'renderItem': (item) => item,
-    });
-
+    const header = Header({slots: [menuButton,title, profileButton, textInput], })
     return header;
 }
